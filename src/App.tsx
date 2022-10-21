@@ -1,32 +1,37 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './App.scss';
+import LoadingComponent from './components/Loading/LoadingComponent';
 import Routes from './routers/Routes';
+import { BASE_URL } from './services/api';
 
 function App() {
+  const [isLoading, setisLoading] = useState(true);
+  const [text, setText] = useState('Carregando a aplicação');
 
   useEffect(() => {
 
-    axios.get('http://localhost:8080/api/metrics/escola?escolaId=6328fa78cc662a35a71406f3&bimestreCod=&ano=2022')
-    .then(function (response) {
-      // handle success
+    axios.get(BASE_URL + 'status')
+      .then(function (response) {
+        // handle success
 
-      //console.log(response);
-      if (response.data.content){
-        console.log(response.data.content)
-      }
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-    });
+        //console.log(response);
+        setisLoading(false);
+      })
+      .catch(function (error) {
+        setText('Estamos com problemas para abrir a aplicação');
+        console.log(error);
+      })
+      .then(function () {
+      });
   }, [])
   return (
-    <>
+    <>{isLoading ? <LoadingComponent isLoading={isLoading} texto={text}></LoadingComponent> :
+
       <Routes />
+    }
+
     </>
   );
 }

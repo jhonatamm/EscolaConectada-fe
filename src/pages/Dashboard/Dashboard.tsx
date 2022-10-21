@@ -4,10 +4,14 @@ import { Col, Container, Navbar, Row, Form } from "react-bootstrap";
 import Filtros from "./components/Filtros";
 //stars
 import { Rating } from 'react-simple-star-rating'
-import { useState } from "react";
+import { createContext, useState } from "react";
 import "./Dashboard.scss"
 import { IoIosSchool, IoIosGitNetwork } from 'react-icons/io';
 import GraphLine from "./components/GraphLine";
+import { Filter } from "../../types/Filters";
+import { Context } from "../../context/Context";
+import StarComponents from "./components/StarComponent";
+import { Escola } from "../../types/Escola";
 
 
 
@@ -19,53 +23,71 @@ export interface ColourOption {
     readonly isFixed?: boolean;
     readonly isDisabled?: boolean;
 }
+
+interface FilterContext {
+    filters: Filter;
+    setFilters: Function;
+    setEscola: Function;
+    escolas: Escola[]
+}
 const DashboardPage = () => {
 
     const [rating, setRating] = useState(78);
-
+    const [filters, setFilters] = useState<Filter>({ escolaIds: [], anos: [], escolas: [], materiaCods: [], exibirBy: '', exibindo: 'Notas', seriesIds: [], mapString: '' } as Filter);
+    const [escolas, setEscolasFilter] = useState<Escola[]>([] as Escola[]);
 
     return (
-        <>
-            <Navbar bg="light">
-                <Navbar.Brand href="#home"><IoIosSchool></IoIosSchool> Escola Conectada <IoIosGitNetwork></IoIosGitNetwork></Navbar.Brand>
-            </Navbar>
-            <Container fluid className="vh-100">
+        <Context.Provider value={[filters, setFilters, escolas, setEscolasFilter]}>
+            <>
+                <Navbar bg="light">
+                    <Navbar.Brand href="#home"><IoIosSchool></IoIosSchool> Escola Conectada <IoIosGitNetwork></IoIosGitNetwork></Navbar.Brand>
+                </Navbar>
+                <Container fluid className="vh-100">
 
-                <Row className='escola-dados'>
-                    <Col sm={3} xxl={2} className='no-left-padding'> <Filtros></Filtros></Col>
-                    <Col sm={9} xxl={10}>
-                        <Row>
-                            <Col>
+                    <Row className='escola-dados'>
+                        <Col sm={3} xxl={2} className='no-left-padding'> <Filtros></Filtros></Col>
+                        <Col sm={9} xxl={10}>
+                            <Row>
+                                <Col>
                                     <GraphLine></GraphLine>
 
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <div className='Star'>
-                                    <div><Rating readonly ratingValue={rating} iconsCount={10} /* Available Props */ /></div><div><h4>E. M. Olivio Bastos </h4></div>
-                                    <div><Rating readonly ratingValue={77.7} iconsCount={10} /* Available Props */ /></div><div><h4>E. Mario Batista </h4></div>
-                                    <div><Rating readonly ratingValue={44.7} iconsCount={10} /* Available Props */ /></div><div><h4>E. padre Mello </h4></div>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row >
-                            <Col>
-                                <Navbar >
-                                    <Row className="row-100">
-                                        <Col className="rights">
-                                            <div><span> Jhonatam Medina </span></div>
-                                            <div><span>2022</span></div>
-                                        </Col>
-                                    </Row>
-                                </Navbar>
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
-            </Container>
-        </>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    {filters.escolas.map(e => (
+                                        <StarComponents key={e.id} escola={e} ano={2022}></StarComponents>
+                                    ))}
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>{filters.mapString.length > 0 ?<>
+                                        
+                                    <iframe width="100%" height="600" id="gmap_canvas" src={"https://maps.google.com/maps?width=100%25&height=600&hl=pt&q="+filters.mapString+"&ie=UTF8&iwloc=B&output=embed"} scrolling="no" ></iframe></> :
+                                    <></>
+                                }
 
+
+                                </Col>
+                            </Row>
+                            <Row >
+                                <Col>
+                                    <Navbar >
+                                        <Row className="row-100">
+                                            <Col className="rights">
+                                                <div><span> Jhonatam Medina </span></div>
+                                                <div><span>2022</span></div>
+                                            </Col>
+                                        </Row>
+                                    </Navbar>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                </Container>
+            </>
+        </Context.Provider>
     )
 }
+
 export default DashboardPage;

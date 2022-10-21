@@ -1,13 +1,12 @@
-.exibir-por{
+.exibir-por {
     border: solid thin #ccc;
     border-radius: 6px;
     padding: 20px;
     background-color: white;
-    
 }
-.filters{
-    padding: 35px 20px 35px ;
-    background-color: #F8F9FA;
+.filters {
+    padding: 35px 20px 35px;
+    background-color: #f8f9fa;
     // margin-top: 20px;
     border-radius: 6px;
     // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -15,4 +14,11 @@
     border-right-color: #dee2e7;
     border-right-style: solid;
     border-right-width: thin;
+}
+.btn-aplicar {
+    &:hover {
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
 }

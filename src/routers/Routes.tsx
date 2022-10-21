@@ -6,8 +6,8 @@ const Routes = () => {
     return (<>
     <Router basename="/">
         <Switch>
-            <Route path="/" element={<HomePage />} ></Route>
-            <Route path="/dashboard" element={<DashboardPage />} ></Route>
+            <Route path="/homepage" element={<HomePage />} ></Route>
+            <Route path="/" element={<DashboardPage />} ></Route>
         </Switch>
     </Router>
     </>)
