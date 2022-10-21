@@ -162,8 +162,6 @@ const GraphLine = () => {
 
               });
         }
-        console.log("-------------------filter "+ JSON.stringify(filters))
-        console.log("-------------------is truee "+ (filters.escolaIds.length > 0  && filters.seriesIds !== undefined &&  filters.seriesIds.length > 0))
         if(filters.escolaIds.length > 0  && filters.seriesIds !== undefined &&  filters.seriesIds.length > 0) fetchBimestreSerieGraphs();
         else if(filters.escolaIds.length > 0 ) fetchEscolasGraphs();
     }, [filters as Filter]);
@@ -202,8 +200,6 @@ const GraphLine = () => {
             setIsOnLoading(false);
             setSeriesState(localState);
         }
-
-        console.log("-------------------filters.seriesIds.length "+ JSON.stringify(bimestreMetricsList))
         if(bimestreMetricsList.length > 0 && filters.seriesIds !== undefined &&  filters.seriesIds.length > 0) mountGraphBimestre();
         else if(escolasMetricsList.length > 0 ) mountGraphEscola();
     }, [escolasMetricsList, bimestreMetricsList]);
