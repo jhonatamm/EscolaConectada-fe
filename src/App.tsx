@@ -27,7 +27,7 @@ function App() {
       });
   }, [])
   return (
-    <>{isLoading ? <LoadingComponent isLoading={isLoading} texto={text}></LoadingComponent> :
+    <>{isLoading ? <>isso e tudo pesso  {process.env.REACT_APP_BACKEND_URL} <LoadingComponent isLoading={isLoading} texto={text}></LoadingComponent> </>:
 
       <Routes />
     }
