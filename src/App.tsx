@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
 
-    axios.get(`${BASE_URL} + status`)
+    axios.get(`${BASE_URL}status`)
       .then(function (response) {
         setisLoading(false);
       })
