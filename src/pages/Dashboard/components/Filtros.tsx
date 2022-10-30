@@ -149,6 +149,7 @@ const Filtros = () => {
             filtersLocal.escolaIds = schoolsIds;
             filtersLocal.anos = anoSelected;
             filtersLocal.escolas = escolas.filter(e => schoolsIds.includes(e.id));
+            filtersLocal.escolas.forEach(e => e.cidadeName = cidades.filter(c => c.id === e.cidadeId)[0].nome );
             filtersLocal.seriesIds = serieSelecteds;
             filtersLocal.materiaCods = materiasIds;
             filtersLocal.exibirBy  = filterByNota ? 'mnota' : filterByPresenca? 'mpresenca' : filterByEvaluate? 'mavaliacao':'';

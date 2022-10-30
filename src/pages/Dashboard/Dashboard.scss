@@ -36,3 +36,14 @@
         margin-bottom: 15px;
     }
 }
+.display-map{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.map-escola{
+    width: 80%;
+    border-radius: 10px;
+    border: solid thin #ccc;
+    margin-bottom: 20px;
+}

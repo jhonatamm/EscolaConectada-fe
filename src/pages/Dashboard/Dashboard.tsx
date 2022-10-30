@@ -61,25 +61,17 @@ const DashboardPage = () => {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col>{filters.mapString.length > 0 ?<>
-                                        
-                                    <iframe width="100%" height="600" id="gmap_canvas" src={"https://maps.google.com/maps?width=100%25&height=600&hl=pt&q="+filters.mapString+"&ie=UTF8&iwloc=B&output=embed"} scrolling="no" ></iframe></> :
-                                    <></>
-                                }
-
-
-                                </Col>
                             </Row>
                             <Row >
                                 <Col>
-                                    <Navbar >
+                                    {/* <Navbar >
                                         <Row className="row-100">
                                             <Col className="rights">
                                                 <div><span> Jhonatam Medina </span></div>
                                                 <div><span>2022</span></div>
                                             </Col>
                                         </Row>
-                                    </Navbar>
+                                    </Navbar> */}
                                 </Col>
                             </Row>
                         </Col>

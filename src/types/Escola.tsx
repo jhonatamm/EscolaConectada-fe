@@ -2,6 +2,7 @@ export type Escola = {
     id : string,
     nome: string,
     cidadeId: string,
+    cidadeName?: string,
     generalMetrics?: GeneralMetrics
 }
 

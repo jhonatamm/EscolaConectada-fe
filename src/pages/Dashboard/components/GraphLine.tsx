@@ -128,15 +128,14 @@ const GraphLine = () => {
             axios.get(BASE_URL+'metrics/escola?escolaIds='+filters.escolaIds+'&ano=2022&materiaCods='+(filters.materiaCods.length > 0 ? filters.materiaCods : ''))
             .then(function (response) {
                 if (response.data){
-                  //console.log(response.data);
                  setEscolasMetricsList(response.data);
                 }
               })
               .catch(function (error) {
                 console.log(error);
+                alert("Erro mensagem: " + error);
               })
               .then(function () {
-
               });
         }
 

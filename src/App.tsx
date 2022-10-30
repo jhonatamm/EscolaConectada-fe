@@ -12,11 +12,8 @@ function App() {
 
   useEffect(() => {
 
-    axios.get(BASE_URL + 'status')
+    axios.get(`${BASE_URL} + status`)
       .then(function (response) {
-        // handle success
-
-        //console.log(response);
         setisLoading(false);
       })
       .catch(function (error) {
